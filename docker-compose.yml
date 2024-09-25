@@ -1,0 +1,47 @@
+version: "3.8"
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: sqlpreview
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Huyan@1807
+      - MSSQL_PID=Evaluation
+    ports:
+      - "1434:1433"
+    networks:
+      - my_network
+    volumes:
+      - ./sql-scripts:/var/opt/mssql/scripts
+    command: /opt/mssql/bin/sqlservr
+
+  ocopmanagementapi:
+    build:
+      context: ./GreenLeaf.API
+      dockerfile: Dockerfile
+    container_name: ocopmanagementapi
+    depends_on:
+      - sqlserver
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=sqlpreview;Database=OcopManagement;User Id=sa;Password=Huyan@1807;TrustServerCertificate=True;
+    ports:
+      - "8888:8080"
+    networks:
+      - my_network
+
+  greenleaf:
+    build:
+      context: ./greenleaf
+      dockerfile: Dockerfile
+    container_name: greenleaf
+    environment:
+       - REACT_APP_API_URL=http://104.131.115.239:8888
+    ports:
+      - "3000:80"
+    networks:
+      - my_network
+    
+networks:
+  my_network:
+    driver: bridge

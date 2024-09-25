@@ -1,0 +1,6 @@
+@GreenLeaf.APIService_HostAddress = http://localhost:5067
+
+GET {{GreenLeaf.APIService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
