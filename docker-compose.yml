@@ -1,20 +1,20 @@
 version: "3.8"
 
 services:
-  sqlserver:
-    image: mcr.microsoft.com/mssql/server:2019-latest
-    container_name: sqlpreview
-    environment:
-      - ACCEPT_EULA=Y
-      - MSSQL_SA_PASSWORD=Huyan@1807
-      - MSSQL_PID=Evaluation
-    ports:
-      - "1434:1433"
-    networks:
-      - my_network
-    volumes:
-      - ./sql-scripts:/var/opt/mssql/scripts
-    command: /opt/mssql/bin/sqlservr
+  # sqlserver:
+  #   image: mcr.microsoft.com/mssql/server:2019-latest
+  #   container_name: sqlpreview
+  #   environment:
+  #     - ACCEPT_EULA=Y
+  #     - MSSQL_SA_PASSWORD=Huyan@1807
+  #     - MSSQL_PID=Evaluation
+  #   ports:
+  #     - "1434:1433"
+  #   networks:
+  #     - my_network
+  #   volumes:
+  #     - ./sql-scripts:/var/opt/mssql/scripts
+  #   command: /opt/mssql/bin/sqlservr
 
   ocopmanagementapi:
     build:
