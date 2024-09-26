@@ -16,10 +16,10 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 //builder.Services.AddDbContext<OcopManagementContext>(options =>
 //              options.UseSqlServer(connectionString,
 //                  sqlOptions => sqlOptions.MigrationsAssembly("SWP.ProductManagement.Repository")));
-//builder.Services.AddDbContext<OcopManagementContext>(options =>
-//             options.UseSqlServer(connectionString,
-//                 sqlOptions => sqlOptions.MigrationsAssembly("GreenLeaf.Repository")));
-//
+builder.Services.AddDbContext<OcopManagementContext>(options =>
+             options.UseSqlServer(connectionString,
+                 sqlOptions => sqlOptions.MigrationsAssembly("GreenLeaf.Repository")));
+
 builder.Services.AddCors(option =>
          option.AddPolicy("CORS", builder =>
              builder.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin()));
