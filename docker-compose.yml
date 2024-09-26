@@ -24,7 +24,7 @@ services:
     depends_on:
       - sqlserver
     environment:
-            - ConnectionStrings__DefaultConnection=Server=sqlpreview;Database=ProductManagement;User Id=sa;Password=Huyan@1807;TrustServerCertificate=True;
+            - ConnectionStrings__DefaultConnection=Server=sqlpreview;Database=OcopManagement;User Id=sa;Password=Huyan@1807;TrustServerCertificate=True;
       # - ConnectionStrings__DefaultConnection=Server=sqlpreview.database.windows.net;Database=OcopManagement;User Id=sqladmin;Password=Huyan@1807;TrustServerCertificate=True;
     ports:
       - "8888:8080"
