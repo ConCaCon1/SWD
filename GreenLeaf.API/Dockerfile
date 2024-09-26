@@ -29,4 +29,4 @@ RUN dotnet publish "./GreenLeaf.APIService.csproj" -c $BUILD_CONFIGURATION -o /a
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "GreenLeaf.APIService.dll" ,"--environment=Development"]
+ENTRYPOINT ["dotnet", "GreenLeaf.APIService.dll"]
