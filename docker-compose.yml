@@ -21,8 +21,8 @@ services:
       context: ./GreenLeaf.API
       dockerfile: Dockerfile
     container_name: ocopmanagementapi
-    depends_on:
-      - sqlserver
+    # depends_on:
+    #   - sqlserver
     environment:
       
       - ConnectionStrings__DefaultConnection=Server=sqlpreview.database.windows.net;Database=OcopManagement;User Id=sqladmin;Password=Huyan@1807;TrustServerCertificate=True;
