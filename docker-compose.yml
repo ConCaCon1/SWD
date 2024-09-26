@@ -1,31 +1,31 @@
 version: "3.8"
 
 services:
-  # sqlserver:
-  #   image: mcr.microsoft.com/mssql/server:2019-latest
-  #   container_name: sqlpreview
-  #   environment:
-  #     - ACCEPT_EULA=Y
-  #     - MSSQL_SA_PASSWORD=Huyan@1807
-  #     - MSSQL_PID=Evaluation
-  #   ports:
-  #     - "1434:1433"
-  #   networks:
-  #     - my_network
-  #   volumes:
-  #     - ./sql-scripts:/var/opt/mssql/scripts
-  #   command: /opt/mssql/bin/sqlservr
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: sqlpreview
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Huyan@1807
+      - MSSQL_PID=Evaluation
+    ports:
+      - "1434:1433"
+    networks:
+      - my_network
+    volumes:
+      - ./sql-scripts:/var/opt/mssql/scripts
+    command: /opt/mssql/bin/sqlservr
 
   ocopmanagementapi:
     build:
       context: ./GreenLeaf.API
       dockerfile: Dockerfile
     container_name: ocopmanagementapi
-    # depends_on:
-    #   - sqlserver
+    depends_on:
+      - sqlserver
     environment:
-      
-      - ConnectionStrings__DefaultConnection=Server=sqlpreview.database.windows.net;Database=OcopManagement;User Id=sqladmin;Password=Huyan@1807;TrustServerCertificate=True;
+            - ConnectionStrings__DefaultConnection=Server=sqlpreview;Database=ProductManagement;User Id=sa;Password=Huyan@1807;TrustServerCertificate=True;
+      # - ConnectionStrings__DefaultConnection=Server=sqlpreview.database.windows.net;Database=OcopManagement;User Id=sqladmin;Password=Huyan@1807;TrustServerCertificate=True;
     ports:
       - "8888:8080"
     networks:
