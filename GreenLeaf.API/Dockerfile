@@ -2,10 +2,11 @@
 
 # This stage is used when running from VS in fast mode (Default for Debug configuration)
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+ENV ASPNETCORE_ENVIRONMENT=Development
 USER app
 WORKDIR /app
-EXPOSE 8080
 EXPOSE 8081
+EXPOSE 8080
 
 
 # This stage is used to build the service project
@@ -28,4 +29,4 @@ RUN dotnet publish "./GreenLeaf.APIService.csproj" -c $BUILD_CONFIGURATION -o /a
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "GreenLeaf.APIService.dll"]
+ENTRYPOINT ["dotnet", "GreenLeaf.APIService.dll" ,"--environment=Development"]
