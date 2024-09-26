@@ -11,6 +11,8 @@ public partial class Payment
 
     public DateTime? CreateDate { get; set; }
 
+    public DateTime? UpdateDate { get; set; }
+
     public decimal TotalPrice { get; set; }
 
     public bool Status { get; set; }

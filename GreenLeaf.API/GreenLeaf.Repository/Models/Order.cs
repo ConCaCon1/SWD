@@ -11,15 +11,19 @@ public partial class Order
 
     public DateTime? CreateDate { get; set; }
 
-    public decimal TotalPrice { get; set; }
-
-    public bool? Status { get; set; }
-
-    public int? UserId { get; set; }
-
     public DateTime? UpdateDate { get; set; }
 
+    public decimal TotalPrice { get; set; }
+
+    public bool Status { get; set; }
+
+    public int UserId { get; set; }
+
     public int? CompanyId { get; set; }
+
+    public int? WarehouseId { get; set; }
+
+    public string FeedBack { get; set; }
 
     public virtual OcopCompany Company { get; set; }
 
@@ -28,4 +32,6 @@ public partial class Order
     public virtual ICollection<Payment> Payments { get; set; } = new List<Payment>();
 
     public virtual User User { get; set; }
+
+    public virtual Warehouse Warehouse { get; set; }
 }

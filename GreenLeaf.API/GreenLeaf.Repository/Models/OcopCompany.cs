@@ -25,13 +25,15 @@ public partial class OcopCompany
 
     public string Phone { get; set; }
 
-    public int? UserId { get; set; }
+    public int UserId { get; set; }
 
     public int? CompanyCategoryId { get; set; }
 
     public virtual OcopCompanyCategory CompanyCategory { get; set; }
 
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
+
+    public virtual ICollection<ProductCategory> ProductCategories { get; set; } = new List<ProductCategory>();
 
     public virtual ICollection<ProductExchange> ProductExchanges { get; set; } = new List<ProductExchange>();
 

@@ -11,5 +11,9 @@ public partial class ProductCategory
 
     public string Name { get; set; }
 
+    public int? OcopCompanyId { get; set; }
+
+    public virtual OcopCompany OcopCompany { get; set; }
+
     public virtual ICollection<Product> Products { get; set; } = new List<Product>();
 }

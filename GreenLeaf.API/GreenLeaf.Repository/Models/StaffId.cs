@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace GreenLeaf.Repository.Models;
 
-public partial class User
+public partial class StaffId
 {
-    public int UserId { get; set; }
+    public int StaffId1 { get; set; }
 
     public string Username { get; set; }
 
@@ -29,11 +29,5 @@ public partial class User
 
     public string Firstname { get; set; }
 
-    public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
-
-    public virtual ICollection<Payment> Payments { get; set; } = new List<Payment>();
-
-    public virtual ICollection<ProductExchange> ProductExchanges { get; set; } = new List<ProductExchange>();
-
-    public virtual ICollection<Role> Roles { get; set; } = new List<Role>();
+    public virtual ICollection<Warehouse> Warehouses { get; set; } = new List<Warehouse>();
 }

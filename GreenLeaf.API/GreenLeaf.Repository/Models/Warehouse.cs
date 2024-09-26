@@ -11,23 +11,27 @@ public partial class Warehouse
 
     public int Quantity { get; set; }
 
-    public bool? Status { get; set; }
+    public bool Status { get; set; }
 
     public DateTime? CreateDate { get; set; }
 
     public DateTime? UpdateDate { get; set; }
 
-    public decimal? Price { get; set; }
+    public decimal Price { get; set; }
 
     public int? ProductId { get; set; }
 
     public int? CompanyId { get; set; }
 
+    public int? StaffId { get; set; }
+
     public virtual OcopCompany Company { get; set; }
 
-    public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
+    public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 
     public virtual Product Product { get; set; }
 
     public virtual ICollection<ProductExchange> ProductExchanges { get; set; } = new List<ProductExchange>();
+
+    public virtual StaffId Staff { get; set; }
 }

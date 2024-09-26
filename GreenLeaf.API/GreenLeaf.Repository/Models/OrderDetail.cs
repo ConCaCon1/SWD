@@ -15,17 +15,15 @@ public partial class OrderDetail
 
     public DateTime? CreateDate { get; set; }
 
+    public DateTime? UpdateDate { get; set; }
+
     public decimal TotalPrice { get; set; }
 
-    public int? OrderId { get; set; }
+    public int OrderId { get; set; }
 
-    public int? WarehouseId { get; set; }
-
-    public int? ProductId { get; set; }
+    public int ProductId { get; set; }
 
     public virtual Order Order { get; set; }
 
     public virtual Product Product { get; set; }
-
-    public virtual Warehouse Warehouse { get; set; }
 }

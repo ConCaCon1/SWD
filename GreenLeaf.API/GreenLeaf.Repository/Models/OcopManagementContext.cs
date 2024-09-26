@@ -18,8 +18,6 @@ public partial class OcopManagementContext : DbContext
     {
     }
 
-    public virtual DbSet<Feedback> Feedbacks { get; set; }
-
     public virtual DbSet<OcopCompany> OcopCompanies { get; set; }
 
     public virtual DbSet<OcopCompanyCategory> OcopCompanyCategories { get; set; }
@@ -40,12 +38,11 @@ public partial class OcopManagementContext : DbContext
 
     public virtual DbSet<Role> Roles { get; set; }
 
-    public virtual DbSet<ShippingHistory> ShippingHistories { get; set; }
+    public virtual DbSet<StaffId> StaffIds { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
 
     public virtual DbSet<Warehouse> Warehouses { get; set; }
-
     public static string GetConnectionString(string connectionStringName)
     {
         var config = new ConfigurationBuilder()
@@ -58,38 +55,17 @@ public partial class OcopManagementContext : DbContext
     }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer(GetConnectionString("DefaultConnection"));
+
+
     //    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-    //        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-D0V832K\\HUYAN;Initial Catalog=OcopManagement;Persist Security Info=True;User ID=sa;Password=123456;Encrypt=False");
+    //        => optionsBuilder.UseSqlServer("Data Source=sqlpreview.database.windows.net;Initial Catalog=OcopManagement;User ID=sqladmin;Password=Huyan@1807;Encrypt=False");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Feedback>(entity =>
-        {
-            entity.HasKey(e => e.FeedbackId).HasName("PK__Feedback__6A4BEDD66FAD415C");
-
-            entity.ToTable("Feedback");
-
-            entity.Property(e => e.AttachedFile)
-                .IsRequired()
-                .HasMaxLength(255);
-            entity.Property(e => e.Content).HasMaxLength(255);
-            entity.Property(e => e.CreatedDate).HasColumnType("datetime");
-            entity.Property(e => e.Rate).HasColumnType("decimal(5, 2)");
-            entity.Property(e => e.UpdatedDate).HasColumnType("datetime");
-
-            entity.HasOne(d => d.Product).WithMany(p => p.Feedbacks)
-                .HasForeignKey(d => d.ProductId)
-                .HasConstraintName("FK_Feedback.ProductId");
-
-            entity.HasOne(d => d.User).WithMany(p => p.Feedbacks)
-                .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK_Feedback.UserId");
-        });
-
         modelBuilder.Entity<OcopCompany>(entity =>
         {
-            entity.HasKey(e => e.CompanyId).HasName("PK__OcopComp__2D971CAC6068D41C");
+            entity.HasKey(e => e.CompanyId).HasName("PK__OcopComp__2D971CACE0824ABD");
 
             entity.ToTable("OcopCompany");
 
@@ -103,7 +79,9 @@ public partial class OcopManagementContext : DbContext
                 .IsRequired()
                 .HasMaxLength(255);
             entity.Property(e => e.CreateDate).HasColumnType("datetime");
-            entity.Property(e => e.Description).HasMaxLength(255);
+            entity.Property(e => e.Description)
+                .IsRequired()
+                .HasMaxLength(255);
             entity.Property(e => e.Email)
                 .IsRequired()
                 .HasMaxLength(255);
@@ -119,7 +97,7 @@ public partial class OcopManagementContext : DbContext
 
         modelBuilder.Entity<OcopCompanyCategory>(entity =>
         {
-            entity.HasKey(e => e.CompanyCategoryId).HasName("PK__OcopComp__0DD4113075399939");
+            entity.HasKey(e => e.CompanyCategoryId).HasName("PK__OcopComp__0DD41130AA6A8AF5");
 
             entity.ToTable("OcopCompanyCategory");
 
@@ -130,11 +108,14 @@ public partial class OcopManagementContext : DbContext
 
         modelBuilder.Entity<Order>(entity =>
         {
-            entity.HasKey(e => e.OrderId).HasName("PK__Order__C3905BCF093AE57C");
+            entity.HasKey(e => e.OrderId).HasName("PK__Order__C3905BCF554C6FA6");
 
             entity.ToTable("Order");
 
             entity.Property(e => e.CreateDate).HasColumnType("datetime");
+            entity.Property(e => e.FeedBack)
+                .IsRequired()
+                .HasMaxLength(255);
             entity.Property(e => e.TotalPrice).HasColumnType("decimal(10, 2)");
             entity.Property(e => e.UpdateDate).HasColumnType("datetime");
 
@@ -144,40 +125,45 @@ public partial class OcopManagementContext : DbContext
 
             entity.HasOne(d => d.User).WithMany(p => p.Orders)
                 .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Order.UserId");
+
+            entity.HasOne(d => d.Warehouse).WithMany(p => p.Orders)
+                .HasForeignKey(d => d.WarehouseId)
+                .HasConstraintName("FK_Order.WarehouseId");
         });
 
         modelBuilder.Entity<OrderDetail>(entity =>
         {
-            entity.HasKey(e => e.OrderDetailId).HasName("PK__OrderDet__D3B9D36C33002882");
+            entity.HasKey(e => e.OrderDetailId).HasName("PK__OrderDet__D3B9D36C39F20E2A");
 
             entity.ToTable("OrderDetail");
 
             entity.Property(e => e.CreateDate).HasColumnType("datetime");
             entity.Property(e => e.Price).HasColumnType("decimal(10, 2)");
             entity.Property(e => e.TotalPrice).HasColumnType("decimal(10, 2)");
+            entity.Property(e => e.UpdateDate).HasColumnType("datetime");
 
             entity.HasOne(d => d.Order).WithMany(p => p.OrderDetails)
                 .HasForeignKey(d => d.OrderId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_OrderDetail.OrderId");
 
             entity.HasOne(d => d.Product).WithMany(p => p.OrderDetails)
                 .HasForeignKey(d => d.ProductId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_OrderDetail.ProductId");
-
-            entity.HasOne(d => d.Warehouse).WithMany(p => p.OrderDetails)
-                .HasForeignKey(d => d.WarehouseId)
-                .HasConstraintName("FK_OrderDetail.WarehouseId");
         });
 
         modelBuilder.Entity<Payment>(entity =>
         {
-            entity.HasKey(e => e.PaymentId).HasName("PK__Payment__9B556A3897CE7FFC");
+            entity.HasKey(e => e.PaymentId).HasName("PK__Payment__9B556A38C90416BC");
 
             entity.ToTable("Payment");
 
             entity.Property(e => e.CreateDate).HasColumnType("datetime");
             entity.Property(e => e.TotalPrice).HasColumnType("decimal(10, 2)");
+            entity.Property(e => e.UpdateDate).HasColumnType("datetime");
 
             entity.HasOne(d => d.Order).WithMany(p => p.Payments)
                 .HasForeignKey(d => d.OrderId)
@@ -190,12 +176,14 @@ public partial class OcopManagementContext : DbContext
 
         modelBuilder.Entity<Product>(entity =>
         {
-            entity.HasKey(e => e.ProductId).HasName("PK__Product__B40CC6CDB986C9F9");
+            entity.HasKey(e => e.ProductId).HasName("PK__Product__B40CC6CD0E972214");
 
             entity.ToTable("Product");
 
             entity.Property(e => e.CreateDate).HasColumnType("datetime");
-            entity.Property(e => e.Description).HasMaxLength(255);
+            entity.Property(e => e.Description)
+                .IsRequired()
+                .HasMaxLength(255);
             entity.Property(e => e.ImageUrl)
                 .IsRequired()
                 .HasMaxLength(255)
@@ -213,22 +201,27 @@ public partial class OcopManagementContext : DbContext
 
         modelBuilder.Entity<ProductCategory>(entity =>
         {
-            entity.HasKey(e => e.CategoryId).HasName("PK__ProductC__19093A0BE10D61A0");
+            entity.HasKey(e => e.CategoryId).HasName("PK__ProductC__19093A0BCF7401EE");
 
             entity.ToTable("ProductCategory");
 
             entity.Property(e => e.Name)
                 .IsRequired()
                 .HasMaxLength(255);
+
+            entity.HasOne(d => d.OcopCompany).WithMany(p => p.ProductCategories)
+                .HasForeignKey(d => d.OcopCompanyId)
+                .HasConstraintName("FK_ProductCategory.OcopCompanyId");
         });
 
         modelBuilder.Entity<ProductExchange>(entity =>
         {
-            entity.HasKey(e => e.ExchangeId).HasName("PK__ProductE__72E6008BEEF48278");
+            entity.HasKey(e => e.ExchangeId).HasName("PK__ProductE__72E6008B30EA029F");
 
             entity.ToTable("ProductExchange");
 
-            entity.Property(e => e.Date).HasColumnType("datetime");
+            entity.Property(e => e.CreateDate).HasColumnType("datetime");
+            entity.Property(e => e.UpdateDate).HasColumnType("datetime");
 
             entity.HasOne(d => d.Company).WithMany(p => p.ProductExchanges)
                 .HasForeignKey(d => d.CompanyId)
@@ -245,12 +238,14 @@ public partial class OcopManagementContext : DbContext
 
         modelBuilder.Entity<ProductExchangeDetail>(entity =>
         {
-            entity.HasKey(e => e.ExchangeDetailId).HasName("PK__ProductE__682FA457305C8BB4");
+            entity.HasKey(e => e.ExchangeDetailId).HasName("PK__ProductE__682FA457C6A285C2");
 
             entity.ToTable("ProductExchangeDetail");
 
+            entity.Property(e => e.CreateDate).HasColumnType("datetime");
             entity.Property(e => e.Note).HasMaxLength(255);
             entity.Property(e => e.Price).HasColumnType("decimal(10, 2)");
+            entity.Property(e => e.UpdateDate).HasColumnType("datetime");
 
             entity.HasOne(d => d.Exchange).WithMany(p => p.ProductExchangeDetails)
                 .HasForeignKey(d => d.ExchangeId)
@@ -263,44 +258,57 @@ public partial class OcopManagementContext : DbContext
 
         modelBuilder.Entity<Role>(entity =>
         {
-            entity.HasKey(e => e.RoleId).HasName("PK__Roles__8AFACE1A75BA32BC");
+            entity.HasKey(e => e.RoleId).HasName("PK__Roles__8AFACE1A3B9292FB");
 
             entity.Property(e => e.Name)
                 .IsRequired()
                 .HasMaxLength(255);
         });
 
-        modelBuilder.Entity<ShippingHistory>(entity =>
+        modelBuilder.Entity<StaffId>(entity =>
         {
-            entity.HasKey(e => e.ShippingHistoryId).HasName("PK__Shipping__535EB2D634701E91");
+            entity.HasKey(e => e.StaffId1).HasName("PK__StaffId__96D4AB171A97CE6D");
 
-            entity.ToTable("ShippingHistory");
+            entity.ToTable("StaffId");
 
+            entity.Property(e => e.StaffId1).HasColumnName("StaffId");
             entity.Property(e => e.CreateDate).HasColumnType("datetime");
-            entity.Property(e => e.EndTime).HasColumnType("datetime");
-            entity.Property(e => e.ShippingCompany)
+            entity.Property(e => e.Email)
                 .IsRequired()
                 .HasMaxLength(255);
-            entity.Property(e => e.StartTime).HasColumnType("datetime");
+            entity.Property(e => e.Firstname)
+                .IsRequired()
+                .HasMaxLength(255);
+            entity.Property(e => e.Lastname)
+                .IsRequired()
+                .HasMaxLength(255);
+            entity.Property(e => e.Password)
+                .IsRequired()
+                .HasMaxLength(255);
+            entity.Property(e => e.Phone)
+                .IsRequired()
+                .HasMaxLength(255);
+            entity.Property(e => e.ProfileImage)
+                .IsRequired()
+                .HasMaxLength(255);
             entity.Property(e => e.UpdateDate).HasColumnType("datetime");
-
-            entity.HasOne(d => d.User).WithMany(p => p.ShippingHistories)
-                .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK_ShippingHistory.UserId");
+            entity.Property(e => e.Username)
+                .IsRequired()
+                .HasMaxLength(255);
         });
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__Users__1788CC4CEF942962");
+            entity.HasKey(e => e.UserId).HasName("PK__Users__1788CC4C09F8E9CC");
 
             entity.Property(e => e.CreateDate).HasColumnType("datetime");
             entity.Property(e => e.Email)
                 .IsRequired()
                 .HasMaxLength(255);
-            entity.Property(e => e.FirstName)
+            entity.Property(e => e.Firstname)
                 .IsRequired()
                 .HasMaxLength(255);
-            entity.Property(e => e.LastName)
+            entity.Property(e => e.Lastname)
                 .IsRequired()
                 .HasMaxLength(255);
             entity.Property(e => e.Password)
@@ -337,7 +345,7 @@ public partial class OcopManagementContext : DbContext
 
         modelBuilder.Entity<Warehouse>(entity =>
         {
-            entity.HasKey(e => e.WarehouseId).HasName("PK__Warehous__2608AFF99C209288");
+            entity.HasKey(e => e.WarehouseId).HasName("PK__Warehous__2608AFF95B8BBAEF");
 
             entity.ToTable("Warehouse");
 
@@ -352,6 +360,10 @@ public partial class OcopManagementContext : DbContext
             entity.HasOne(d => d.Product).WithMany(p => p.Warehouses)
                 .HasForeignKey(d => d.ProductId)
                 .HasConstraintName("FK_Warehouse.ProductId");
+
+            entity.HasOne(d => d.Staff).WithMany(p => p.Warehouses)
+                .HasForeignKey(d => d.StaffId)
+                .HasConstraintName("FK_Warehouse.StaffId");
         });
 
         OnModelCreatingPartial(modelBuilder);

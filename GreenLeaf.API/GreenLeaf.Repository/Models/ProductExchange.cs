@@ -9,7 +9,9 @@ public partial class ProductExchange
 {
     public int ExchangeId { get; set; }
 
-    public DateTime? Date { get; set; }
+    public DateTime? CreateDate { get; set; }
+
+    public DateTime? UpdateDate { get; set; }
 
     public int? UserId { get; set; }
 
