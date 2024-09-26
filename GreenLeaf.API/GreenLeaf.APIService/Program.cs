@@ -16,9 +16,9 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 //builder.Services.AddDbContext<OcopManagementContext>(options =>
 //              options.UseSqlServer(connectionString,
 //                  sqlOptions => sqlOptions.MigrationsAssembly("SWP.ProductManagement.Repository")));
-builder.Services.AddDbContext<OcopManagementContext>(options =>
-             options.UseSqlServer(connectionString,
-                 sqlOptions => sqlOptions.MigrationsAssembly("GreenLeaf.Repository")));
+//builder.Services.AddDbContext<OcopManagementContext>(options =>
+//             options.UseSqlServer(connectionString,
+//                 sqlOptions => sqlOptions.MigrationsAssembly("GreenLeaf.Repository")));
 //
 builder.Services.AddCors(option =>
          option.AddPolicy("CORS", builder =>
@@ -41,10 +41,10 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-using (var scope = app.Services.CreateScope())
-{
-    var db = scope.ServiceProvider.GetRequiredService<OcopManagementContext>();
-    db.Database.Migrate();
-}
+//using (var scope = app.Services.CreateScope())
+//{
+//    var db = scope.ServiceProvider.GetRequiredService<OcopManagementContext>();
+//    db.Database.Migrate();
+//}
 
 app.Run();
