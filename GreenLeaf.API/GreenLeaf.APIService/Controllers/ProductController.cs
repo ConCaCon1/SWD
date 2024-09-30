@@ -6,32 +6,33 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using GreenLeaf.Repository.Models;
+using GreenLeaf.Repository;
 
 namespace GreenLeaf.APIService.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductsController : ControllerBase
+    public class ProductController : ControllerBase
     {
-        private readonly OcopManagementContext _context;
+        private readonly UnitOfWork _unitOfWork;
 
-        public ProductsController(OcopManagementContext context)
+        public ProductController (UnitOfWork unitOfWork)
         {
-            _context = context;
+            _unitOfWork = unitOfWork;
         }
 
         // GET: api/Products
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
+        public async Task<ActionResult<IEnumerable<Product>>> GetProductCategories()
         {
-            return await _context.Products.ToListAsync();
+            return await _unitOfWork.ProductRepository.GetAllAsync();
         }
 
         // GET: api/Products/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
-            var product = await _context.Products.FindAsync(id);
+            var product = await _unitOfWork.ProductRepository.GetByIdAsync(id);
 
             if (product == null)
             {
@@ -39,6 +40,22 @@ namespace GreenLeaf.APIService.Controllers
             }
 
             return product;
+        }
+
+        // POST: api/Products
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754    
+        [HttpPost]
+        public async Task<ActionResult<Product>> PostProduct(Product product)
+        {
+            try
+            {
+                await _unitOfWork.ProductRepository.CreateAsync(product);
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+
+            }
+            return CreatedAtAction("GetProduct", new { id = product.ProductId }, product);
         }
 
         // PUT: api/Products/5
@@ -51,11 +68,9 @@ namespace GreenLeaf.APIService.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(product).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
+                _unitOfWork.ProductRepository.UpdateAsync(product);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -72,36 +87,24 @@ namespace GreenLeaf.APIService.Controllers
             return NoContent();
         }
 
-        // POST: api/Products
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Product>> PostProduct(Product product)
-        {
-            _context.Products.Add(product);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetProduct", new { id = product.ProductId }, product);
-        }
-
         // DELETE: api/Products/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(int id)
         {
-            var product = await _context.Products.FindAsync(id);
+            var product = await _unitOfWork.ProductRepository.GetByIdAsync(id);
             if (product == null)
             {
                 return NotFound();
             }
 
-            _context.Products.Remove(product);
-            await _context.SaveChangesAsync();
+            await _unitOfWork.ProductRepository.RemoveAsync(product);
 
             return NoContent();
         }
 
         private bool ProductExists(int id)
         {
-            return _context.Products.Any(e => e.ProductId == id);
+            return _unitOfWork.ProductRepository.GetByIdAsync(id) != null;
         }
     }
 }

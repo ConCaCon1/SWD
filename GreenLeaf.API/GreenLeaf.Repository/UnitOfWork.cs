@@ -13,6 +13,7 @@ namespace GreenLeaf.Repository
 
         private OcopManagementContext _context;
         private ProductRepository _productRepository;
+        private ProductCategoryRepository _categoryRepository;
 
         public UnitOfWork() => _context ??= new OcopManagementContext();
 
@@ -21,6 +22,10 @@ namespace GreenLeaf.Repository
         public ProductRepository ProductRepository
         {
             get { return _productRepository ??= new ProductRepository(_context); }
+        }
+        public ProductCategoryRepository ProductCategoryRepository
+        {
+            get { return _categoryRepository ??= new ProductCategoryRepository(_context); }
         }
     }
 }

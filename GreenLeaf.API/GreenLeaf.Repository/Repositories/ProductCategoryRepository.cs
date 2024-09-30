@@ -9,12 +9,9 @@ using System.Threading.Tasks;
 
 namespace GreenLeaf.Repository.Repositories
 {
-    public class ProductRepository : GenericRepository<Product>
+    public class ProductCategoryRepository : GenericRepository<ProductCategory>
     {
-        public ProductRepository( OcopManagementContext context) => _context = context;
-              
-             
-      
+        public ProductCategoryRepository(OcopManagementContext context) => _context = context;
 
     }
 }
