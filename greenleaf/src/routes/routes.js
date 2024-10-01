@@ -1,6 +1,8 @@
-
+import config from "../config";
+import Home from "../pages/Home";
 const publicRoutes = [
   // ai cũng truy cập đc
+  { path: config.routes.home, component: Home },
 ];
 
 const privateRoutes = [
