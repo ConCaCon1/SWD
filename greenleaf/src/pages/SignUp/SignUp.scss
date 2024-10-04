@@ -1,0 +1,113 @@
+.SignUp {
+    height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('https://images3.alphacoders.com/132/1323579.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow-x: hidden;
+  }
+  .text-danger1{
+    --bs-text-opacity: 1;
+    color: #abea6a !important;
+  }
+  .btn_next {
+    background: #2adb6e !important;
+    border: 1px solid #044d2c !important;
+    color: #000 !important;
+    font-size: 15px;
+    text-transform: uppercase;
+    border-radius: 40px;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .form-control1 {
+    background: rgba(255, 255, 255, 0.08);
+    border: none;
+    height: 50px;
+    width: 100%;
+    border-radius: 40px;
+    padding: 0 20px;
+    font-size: 1rem;
+    font-weight: 400;
+    background-color: #b8cdbb;
+    transition: border-color 0.3s ease-in-out;
+  }
+  
+  .infor_sigup {
+    display: flex;
+  }
+  
+  .mt-15 {
+    margin-top: 15px;
+  }
+  
+  .mt-30 {
+    margin-top: 30px;
+  }
+  
+  .pd-50 {
+    padding: 35px 0;
+  }
+  
+  .sign_form {
+    padding: 50px 50px 30px;
+    box-shadow: -0.083333333in 0.5pc 1.125pc -7px rgba(25, 42, 70, 0.13);
+  }
+  
+  .checkbox_input {
+    display: flex;
+    line-height: 1.4rem;
+    text-align: start;
+  }
+  
+  .term_policy {
+    font-size: 14px;
+  }
+  
+  .sign_in a,
+  .term_policy a {
+    color: #ed2a26;
+    text-decoration: none;
+  }
+  
+  .sign_in a:hover,
+  .term_policy a:hover {
+    color: #333 !important;
+    text-decoration: underline;
+  }
+  
+  .sign_footer {
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+  }
+  
+  .cl-b {
+    color: #686f7a;
+  }
+  .input_password{
+    display: flex;
+    position: relative;
+    margin-bottom: 1rem;
+  }
+  .policy {
+    color: #ee4d2d;
+    cursor: pointer;
+    text-decoration: none;
+    user-select: none;
+  }
+  .fa-eye-slash:before {
+    content: "\f070";
+}
+.error-message {
+  color: red;
+  font-size: 0.875rem; /* Cỡ chữ nhỏ */
+  margin-top: 5px; /* Khoảng cách nhỏ từ input */
+  text-align: left; /* Căn lề trái */
+}
+input:-webkit-autofill{
+  -webkit-box-shadow: 0 0 0px 1000px #b8cdbb  inset !important; 
+}

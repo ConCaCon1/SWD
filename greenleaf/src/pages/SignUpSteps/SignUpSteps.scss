@@ -1,0 +1,228 @@
+.SignUpSteps {
+    height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('https://images3.alphacoders.com/132/1323579.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow-x: hidden;
+  }
+  
+  .form-container {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 40px 30px;
+    max-width: 450px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .logo {
+    margin-bottom: 20px;
+    width: 20%;
+  }
+  
+  .nav-tabs {
+    display: flex;
+    justify-content: space-between;
+    background-color: #f7f7f7;
+    border-bottom: none;
+    margin-bottom: 30px;
+  }
+  .nav-item{
+    width: 50%;
+  }
+  .nav-item button {
+    background: transparent;
+    border: none;
+    height: 50px;
+    width: 100%;
+    border: 1px solid #333;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 5px;
+    
+    font-size: 1rem;
+    font-weight: 400;
+    font-family: "Lato", Arial, sans-serif;
+    background-color: #b8cdbb;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+  
+  .nav-item a {
+    padding: 10px 0;
+    display: block;
+    width: 100%;
+    font-size: 16px;
+    text-align: center;
+    background-color: #f7f7f7;
+    color: #333;
+    border: 1px solid #ddd;
+    border-bottom: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .nav-item a.active {
+    color: #ed2a26;
+    border-bottom: 2px solid #ed2a26;
+    background-color: #fff;
+  }
+  
+  h3 {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 30px;
+  }
+  
+  .select-menu {
+    margin-bottom: 20px;
+  }
+  
+  .select-btn {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    justify-content: space-between;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    padding: 0 10px;
+    font-weight: 400;
+    cursor: pointer;
+    border-radius: 2px;
+    color: #686f7a;
+  }
+  
+  textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    font-size: 14px;
+    font-family: "Roboto", sans-serif;
+    border: 1px solid #e5e5e5;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    outline: none;
+    resize: none;
+    transition: border-color 0.3s;
+  }
+  
+  textarea:focus {
+    border-color: #ed2a26;
+  }
+  
+  .biography-hint {
+    text-align: left;
+    font-size: 12px;
+    color: #686f7a;
+    margin-bottom: 20px;
+  }
+  
+  .btn_signup {
+    background: #2adb6e !important;
+    border: 1px solid #044d2c !important;
+    color: #000 !important;
+    font-size: 15px;
+    text-transform: uppercase;
+    border-radius: 40px;
+    transition: background-color 0.3s ease-in-out;
+    width: 100%;
+  }
+  .mt-50{
+    margin-top: 50px;
+  }
+  .btn_signup:hover {
+    background-color: #d21e1a;
+  }
+  
+  .sign_in {
+    font-size: 14px;
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .sign_in a {
+    color: #ed2a26;
+    text-decoration: none;
+  }
+  .text-danger1 {
+    --bs-text-opacity: 1;
+    color: #abea6a !important;
+  }
+  .sign_in a:hover {
+    text-decoration: underline;
+  }
+  .forgot_form{
+    width: 100%;
+  }
+  .select-menu {
+    position: relative;
+    width: 100%;
+    background-color: #b8cdbb;
+  }
+  
+  .select-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #b8cdbb;
+    padding: 10px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+  
+  .btn-text {
+    font-size: 16px;
+  }
+  
+  .btn-icon {
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .options {
+    position: absolute;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 10;
+  }
+  
+  .option {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    list-style: none;
+    margin: 0;
+  }
+  
+  .option:hover {
+    background-color: #b8cdbb;
+    text-decoration: none;
+    list-style: none;
+  }
+  .sign_form{
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .select-menu .options.active {
+    display: block;
+  }
+  .text_box textarea{
+    background-color:#b8cdbb ;
+  }
+  .btn_toggle:active{
+    background-color: #000;
+    color: #b8cdbb;
+  }
+  .busniness_input{
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    margin-bottom: 20px;
+    background-color: #b8cdbb;
+  }

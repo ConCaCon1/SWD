@@ -1,0 +1,206 @@
+
+.sign_up {
+    text-decoration: none;
+    margin-left: 5px;
+    color: #f20c0c;
+  }
+  .ggle{
+    width: 6%;
+    margin-right: 10px;
+  }
+  .heading-section {
+    font-size: 28px;
+    color: #fff;
+    font-weight: 400;
+    font-family: "Lato", Arial, sans-serif;
+  }
+  
+  .login {
+    height: 100vh; /* Chiều cao 100% màn hình */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('https://images3.alphacoders.com/132/1323579.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow-x: hidden;
+    position: relative;
+  }
+  
+  .login_container {
+    padding: 4em 2em;
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    background: rgba(0, 0, 0, 0.5); 
+    border-radius: 20px;
+  }
+  
+  .login-wrap {
+    background: transparent; 
+  }
+  .login-wrap h3 {
+    font-weight: 300;
+    color: #fff;
+  }
+  
+  .text-center {
+    text-align: center !important;
+  }
+  
+  .mb-4 {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .form-group {
+    position: relative;
+    margin-bottom: 1rem;
+  }
+  
+  .form-control1 {
+    background: transparent;
+    border: none;
+    height: 50px;
+    width: 100%;
+    border: 1px solid transparent;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 1rem;
+    font-weight: 400;
+    font-family: "Lato", Arial, sans-serif;
+    background-color: #b8cdbb;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+  
+  .form-control1:focus {
+    border-color: #2adb6e; 
+    box-shadow: 0 0 8px rgba(42, 219, 110, 0.6);
+  }
+  
+  .button,
+  input {
+    overflow: visible;
+  }
+  
+  .btn.btn-primary {
+    background: #2adb6e !important;
+    border: 1px solid #044d2c !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    font-size: 15px;
+    text-transform: uppercase;
+    border-radius: 40px;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .btn.btn-primary:hover {
+    background: #1a9c5c !important;
+  }
+  
+  .px-3 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  .d-md-flex {
+    display: flex !important;
+  }
+  
+  .w-50 {
+    width: 50% !important;
+  }
+  
+  .checkbox-primary {
+    color: #abea64;
+  }
+  
+  .checkbox-wrap {
+    display: block;
+    position: relative;
+    margin-bottom: 12px;
+    
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    user-select: none;
+  }
+  
+  .checkbox-wrap input {
+    position: relative;
+    opacity: 0;
+    height: 0;
+    width: 0;
+  }
+  
+  .checkmark {
+    position: relative;
+    top: 0;
+    left: 0;
+    margin-right: 5px;
+  }
+  
+  .checkmark:after {
+    content: "\f0c8";
+    font-family: "FontAwesome";
+    position: relative;
+    font-size: 20px;
+    transition: 0.3s;
+  }
+  
+  .checkbox-wrap input:checked ~ .checkmark:after {
+    content: "\f14a";
+    font-family: "FontAwesome";
+    color: #abea64;
+  }
+  
+  .field-icon {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+  
+  .text-md-right {
+    text-align: right !important;
+  }
+  
+  .social a {
+    width: 100%;
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #fff;
+    background: #7ef3b8;
+    margin-right: 0.25rem !important;
+    padding: 0.5rem !important;
+    border-radius: 0.25rem !important;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  }
+  
+  .social a:hover {
+    background-color: #f9f9f9;
+    color: #000;
+  }
+  
+  .social i {
+    margin-right: 5px;
+  }
+  
+  .social {
+    font-size: 16px;
+  }
+  .Or {
+    font-family: "Lato", Arial, sans-serif;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+  input:-webkit-autofill{
+    -webkit-box-shadow: 0 0 0px 1000px #b8cdbb  inset !important; 
+  }
