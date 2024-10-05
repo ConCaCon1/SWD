@@ -14,7 +14,7 @@ export default function SignUp() {
   });
 
   const [showPassword, setShowPassword] = useState(false);
-  
+  const [isIconClicked, setIsIconClicked] = useState(false);
   const [errors, setErrors] = useState({});
 
   const handleInputChange = (e) => {
@@ -26,6 +26,7 @@ export default function SignUp() {
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
+    setIsIconClicked(!isIconClicked);
   };
 
   const validateForm = () => {
@@ -58,7 +59,7 @@ export default function SignUp() {
     e.preventDefault();
    
     if (validateForm()) {
-      navigate("/signupstep");
+      navigate("/signupsteps");
     }
   };
 
@@ -93,7 +94,7 @@ export default function SignUp() {
                       value={formValues.lastName}
                       onChange={handleInputChange}
                     />
-                    {errors.lastName && <div className="text-danger1">{errors.lastName}</div>}
+                    {errors.lastName && <div className="text-danger2">{errors.lastName}</div>}
                   </div>
                 </div>
 
@@ -121,9 +122,10 @@ export default function SignUp() {
                     onChange={handleInputChange}
                     
                   />
-                  {errors.password && <div className="text-danger1">{errors.password}</div>}
+                  {errors.password && <div className="text-danger2">{errors.password}</div>}
                 </div>
-                <div className="input_password mb-3">
+                {/* <div className="input_password1 mb-3">
+                  
                   <input
                     type={showPassword ? "text" : "password"}
                     name="confirmPassword"
@@ -133,37 +135,49 @@ export default function SignUp() {
                     value={formValues.confirmPassword}
                     onChange={handleInputChange}
                   />
-                  <span
-                    className={`fa fa-fw field-icon toggle-password ${showPassword ? "fa-eye" : "fa-eye-slash"}`}
+                   <span
+                     className={`fa fa-fw field-icon1 toggle-password ${showPassword ? "fa-eye" : "fa-eye-slash"} ${isIconClicked ? "clicked" : ""}`}
                     onClick={togglePasswordVisibility}
-                    style={{ cursor: "pointer" }}
-                  ></span>
-                  {errors.confirmPassword && <div className="text-danger1">{errors.confirmPassword}</div>}
-                </div>
+                    style={{ cursor: "pointer"  }}
+                  >
 
-                <div className="form-check checkbox_input mt-4 text-start">
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                    id="subscribeCheckbox"
-                  />
-                  <label className="form-check-label text-white" htmlFor="subscribeCheckbox">
-                    Tôi muốn nhận email với các ưu đãi hấp dẫn và gợi ý cá nhân.
-                  </label>
+                  </span>
+                  {errors.confirmPassword && <div className="text-danger2">{errors.confirmPassword}</div>}
+                 
+                 
                 </div>
+                 */}
+                 <div className={`input_password1 mb-3 ${errors.confirmPassword ? 'has-error' : ''}`}>
+  <input
+    type={showPassword ? "text" : "password"}
+    name="confirmPassword"
+    className="form-control1"
+    placeholder="Điền lại mật khẩu"
+    autoComplete="on"
+    value={formValues.confirmPassword}
+    onChange={handleInputChange}
+  />
+  <span
+    className={`fa fa-fw field-icon1 toggle-password ${showPassword ? "fa-eye" : "fa-eye-slash"}`}
+    onClick={togglePasswordVisibility}
+    style={{ cursor: "pointer" }}
+  >
+  </span>
+  {errors.confirmPassword && <div className="text-danger2">{errors.confirmPassword}</div>}
+</div>
 
                 <button className="btn_next w-100 mt-4" type="submit">
                   Tiếp tục
                 </button>
 
-                <div className="term_policy mt-3 text-white">
+                <div className="sign-in-button mt-3 text-white">
                   <span>Bằng việc đăng kí, bạn đã đồng ý với Green Leaf về </span>
                   <Link to="/terms_of_use" className="text-danger1">Điều khoản</Link>
                   <span> và </span>
                   <Link to="/privacy_policy" className="text-danger1">Dịch vụ</Link>.
                 </div>
 
-                <div className="sign_in mt-4">
+                <div className="sign-in-button mt-4">
                   <span className="text-white">Bạn đã có tài khoản? </span>
                   <Link to="/" className="text-danger1">Đăng nhập</Link>
                 </div>

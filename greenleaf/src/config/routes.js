@@ -8,6 +8,6 @@ const routes = {
   login : "/",
   signup : "signup",
   signupsteps : "signupsteps",
-
+  contactus : "contactus",
 };
 export default routes;

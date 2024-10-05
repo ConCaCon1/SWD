@@ -1,0 +1,37 @@
+.header_container{
+    background: #1d2738;
+    color: #7f8fa9;
+    padding: 2rem 0;
+}
+
+
+.breadcrumb-item.breadcrumb-item::before {
+    display: inline-block;
+    padding-right: .5rem;
+    padding-left: .5rem;
+    color: #868e96;
+    content: "/";
+}
+.breadcrumb1{
+    padding: 0;
+    margin-bottom: 0;
+    list-style: none;
+    background-color: transparent;
+    border-radius: 0;
+    margin: 0 auto;
+    display: table;
+}
+.breadcrumb-item {
+    float: left;
+}
+.breadcrumb-item i{
+    color: #7f8fa9 !important;
+}
+.breadcrumb-item a{
+    color: #7f8fa9 !important;
+    text-decoration: none;
+ 
+}
+ol li {
+    margin: 5px 0;
+}

@@ -54,7 +54,7 @@ function SignUpSteps() {
                           onClick={handleBussiness}
                           className={`btn_toggle ${Bussiness ? "active" : ""}`}
                         >
-                          Đăng kí cho doanh nghiệp
+                          Đăng kí doanh nghiệp
                         </button>
                       </li>
                       <li className="nav-item">
@@ -62,7 +62,7 @@ function SignUpSteps() {
                           onClick={handleCustomer}
                           className={`btn_toggle ${Customer ? "active" : ""}`}
                         >
-                          Đăng kí cho khách hàng
+                          Đăng kí khách hàng
                         </button>
                       </li>
                     </ul>
@@ -100,14 +100,9 @@ function SignUpSteps() {
                           data-testid="description-input"
                         ></textarea>
                       </div>
-                      <div className="go_signIn">
-                        <span className="text-white cl-b">
-                          Tiểu sử của bạn nên chứa ít nhất 12.000 ký tự để cung
-                          cấp sản phẩm/dịch vụ của bạn.
-                        </span>
-                      </div>
+                    
                       <button type="submit" className="btn_signup ">
-                        Đăng ký khách hàng ngay
+                        Đăng ký ngay
                       </button>
                     </form>
                   )}
@@ -136,7 +131,8 @@ function SignUpSteps() {
                           </span>{" "}
                         </div>
                         {select && (
-                          <ul className="options">
+                  
+                          <ul className="menu-dropdown">
                             <li
                               className="option"
                               onClick={() => handleOptionSelect("Development")}
@@ -228,6 +224,7 @@ function SignUpSteps() {
                               Teaching & Academics
                             </li>
                           </ul>
+                    
                         )}
                       </div>
                       <div className="business">
@@ -256,19 +253,14 @@ function SignUpSteps() {
                           placeholder="Mô tả chi tiết về công ty của bạn"
                         ></textarea>
                       </div>
-                      <div className="go_signIn">
-                        <span className="text-white cl-b">
-                          Tiểu sử của bạn nên chứa ít nhất 12.000 ký tự để cung
-                          cấp sản phẩm/dịch vụ của bạn.
-                        </span>
-                      </div>
+                   
                       <button type="submit" className="btn_signup">
-                        Đăng ký doanh nghiệp ngay
+                        Đăng ký ngay
                       </button>
                     </form>
                   )}
 
-                  <div className="sign_in">
+                  <div className="sign-in-button">
                     <span className="text-white cl-b">
                       Bạn đã có tài khoản?{" "}
                     </span>

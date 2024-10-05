@@ -1,5 +1,6 @@
 import config from "../config";
 import ChangePassword from "../pages/ChangePassword";
+import ContactUs from "../pages/ContactUs";
 import EmailVerification from "../pages/EmailVerification";
 import ForgotPassword from "../pages/ForgotPassword";
 import Home from "../pages/Home";
@@ -14,8 +15,8 @@ const publicRoutes = [
   { path: config.routes.forgotpassword, component: ForgotPassword },
   { path: config.routes.login, component: Login },
   { path: config.routes.signup, component: SignUp },
-  {path: config.routes.signupsteps, component : SignUpSteps},
-  
+  { path: config.routes.signupsteps, component: SignUpSteps },
+  {path:config.routes.contactus, component: ContactUs},
 ];
 
 const privateRoutes = [
