@@ -496,7 +496,10 @@ export default function ContactUS() {
                     <li className="breadcrumb-item">
                       <a href="/shop">Shop</a>
                     </li>
-                    <li className="breadcrumb-item active" aria-current="page">
+                    <li
+                      className="breadcrumb-item active text-white"
+                      aria-current="page"
+                    >
                       Contact
                     </li>
                   </ol>
@@ -506,6 +509,49 @@ export default function ContactUS() {
           </div>
         </div>
       </div>
+      <section className="gray">
+        <div className="container">
+          <div className="row mb-4">
+            <div className="col-lg-4 col-md-4">
+              <div className="contact-box">
+                <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9QsXRzns-NDqOypPMHRgojEpyDFOSDdOtEA&s"
+                  className="mx-auto"
+                  alt=""
+                ></img>
+                <h4>Chi nhánh HCM</h4>
+                Lô E2a-7, Đường D1 Khu Công nghệ cao, P. Long Thạnh Mỹ, TP. Thủ
+                Đức, TP. Hồ Chí Minh
+              </div>
+            </div>
+            <div className="col-lg-4 col-md-4">
+              <div className="contact-box">
+                <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd7y7FpEnudKD4uyWXnxfX2tKKUp66G4n0lw&s"
+                  className="mx-auto"
+                  alt=""
+                ></img>
+                <h4>Chi nhánh Hà Nội</h4>
+                 Khu Công nghệ cao
+                 Hòa Lạc – Km29 Đại lộ Thăng Long, H. Thạch Thất, TP. Hà Nội
+              </div>
+            </div>
+            <div className="col-lg-4 col-md-4">
+              <div className="contact-box">
+                <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2VEpJOYuJlB-l7GEvROHM876ezvLc-cKiMQ&s"
+                  className="mx-auto"
+                  alt=""
+                ></img>
+                <h4>Chi nhánh Đà Nẵng</h4>
+                Khu đô thị công nghệ FPT Đà Nẵng, P. Hoà Hải, Q. Ngũ Hành Sơn, TP. Đà Nẵng
+              </div>
+            </div>
+          
+            
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
